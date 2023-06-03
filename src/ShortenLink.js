@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 const ShortenLink = ({ items, deleteItem }) => {
-  const [buttonText, setButtonText] = useState("Copy");
+  // const [clipBoardState, setClipBoardState] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   return (
     <Wrapper className="shorten-links">
       {items.map((item) => {
@@ -11,15 +13,22 @@ const ShortenLink = ({ items, deleteItem }) => {
             <p className="original-link">{item.link}</p>
             <div className="shorten-right">
               <p className="shortened-link">{item.shortenedLink}</p>
-
+              {/* <CopyToClipboard
+                text={item.link}
+                onCopy={() => setClipBoardState(true)}
+              >
+                <button className="btn copy-btn">
+                  {clipBoardState ? "Copied" : "Copy"}
+                </button>
+              </CopyToClipboard> */}
               <button
                 className="btn copy-btn"
                 onClick={() => {
                   navigator.clipboard.writeText(item.shortenedLink);
-                  setButtonText("Copied");
+                  setIsCopied(true);
                 }}
               >
-                {buttonText}
+                {isCopied ? "Copied!" : "Copy"}
               </button>
               <button
                 className="btn delete-btn"
@@ -62,6 +71,10 @@ const Wrapper = styled.section`
   .delete-btn {
     border-radius: 0.25rem;
   }
+  .delete-btn {
+    font-size: 18px;
+    padding: 0.5rem;
+  }
   @media (max-width: 768px) {
     .shorten-links {
       margin-top: 2rem;
@@ -84,7 +97,7 @@ const Wrapper = styled.section`
     }
     .shorten-right {
       flex-direction: column;
-      align-items: start;
+      align-items: center;
       width: 100%;
       button {
         width: 100%;

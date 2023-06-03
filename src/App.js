@@ -365,6 +365,7 @@ const Wrapper = styled.main`
     /* overflow: hidden; */
     padding: 3rem 0rem;
     padding-bottom: 6rem;
+
     .hero-info {
       margin-top: 5rem;
       width: 50%;
@@ -372,7 +373,6 @@ const Wrapper = styled.main`
         font-weight: 700;
         margin-bottom: 1rem;
         line-height: 5rem;
-
         font-size: 56px;
       }
       .desc {
@@ -581,7 +581,7 @@ const Wrapper = styled.main`
       .hero-info {
         text-align: center;
         width: 100%;
-        margin-top: 80%;
+        margin-top: 100%;
         h1 {
           font-size: 32px;
           line-height: 3rem;
