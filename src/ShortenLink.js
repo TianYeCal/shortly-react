@@ -1,44 +1,16 @@
+import { SingleLink } from "./SingleLink";
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+// import { CopyToClipboard } from "react-copy-to-clipboard";
 const ShortenLink = ({ items, deleteItem }) => {
   // const [clipBoardState, setClipBoardState] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false);
   return (
     <Wrapper className="shorten-links">
       {items.map((item) => {
-        return (
-          <div key={item.id} className="container single-link">
-            <p className="original-link">{item.link}</p>
-            <div className="shorten-right">
-              <p className="shortened-link">{item.shortenedLink}</p>
-              {/* <CopyToClipboard
-                text={item.link}
-                onCopy={() => setClipBoardState(true)}
-              >
-                <button className="btn copy-btn">
-                  {clipBoardState ? "Copied" : "Copy"}
-                </button>
-              </CopyToClipboard> */}
-              <button
-                className="btn copy-btn"
-                onClick={() => {
-                  navigator.clipboard.writeText(item.shortenedLink);
-                  setIsCopied(true);
-                }}
-              >
-                {isCopied ? "Copied!" : "Copy"}
-              </button>
-              <button
-                className="btn delete-btn"
-                onClick={() => deleteItem(item.id)}
-              >
-                <AiOutlineClose />
-              </button>
-            </div>
-          </div>
-        );
+        // const [isCopied, setIsCopied] = useState(false);
+        return <SingleLink key={item.id} deleteItem={deleteItem} item={item} />;
       })}
     </Wrapper>
   );

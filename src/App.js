@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BoostDesktop from "./images/bg-boost-desktop.svg";
-import BoostMobil from "./images/bg-boost-mobile.svg";
-import ShortenDesktop from "./images/bg-shorten-desktop.svg";
-import ShortenMobil from "./images/bg-shorten-mobile.svg";
+
 import Brand from "./images/icon-brand-recognition.svg";
 import Detailed from "./images/icon-detailed-records.svg";
 import { ReactComponent as Facebook } from "./images/icon-facebook.svg";
@@ -28,21 +25,17 @@ function App() {
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
-
   const getLink = async () => {
     if (!link) return;
     try {
       const resp = await axios(`https://api.shrtco.de/v2/shorten?url=${link}`);
       setShortenedLink(resp.data.result.full_share_link);
     } catch (error) {
-      // console.log(error.response.data.ok);
-      // if()
       if (!error.response.data.okay) {
         setIsError(true);
         setErrorMsg("Please input valid url address");
         return;
       }
-      console.log(error.response);
     }
     setIsError(false);
     return;
@@ -53,6 +46,7 @@ function App() {
       id: nanoid(),
       link: link,
       shortenedLink: shortenedLink,
+      isCopied: false,
     };
     if (isError) return;
     setItems([...items, item]);

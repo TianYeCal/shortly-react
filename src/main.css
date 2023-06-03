@@ -300,9 +300,11 @@ ul {
   width: 80vw;
   margin: 0 auto;
 }
-.copy-btn:focus {
-  background-color: hsl(257, 27%, 26%);
-  color: #fff;
+.color-change {
+  background: hsl(257, 27%, 26%);
+}
+.copy-btn:hover {
+  background: hsl(257, 27%, 26%);
 }
 @media (max-width: 768px) {
   .form {
